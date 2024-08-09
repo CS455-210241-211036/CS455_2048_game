@@ -9,7 +9,7 @@ for(i=1; i<=gridItems.length; i++)
     let item = gridItems[i-1];
     item.firstElementChild.innerText = "";
     row.push(item);
-    if(i%grid_row_size == 0)
+    if(i%grid_row_size === 0)
     {
         curr_grid.push(row);
         row = [];
@@ -34,7 +34,7 @@ function getCurrentValues(){
     let matrix = []
     let row = []; 
     for(i=1; i<=gridItems.length; i++){
-        if(i % 4 === 0){
+        if(i % grid_row_size === 0){
             let item = gridItems[i-1];
             row.push(item.firstElementChild.innerText);
             matrix.push(row);
@@ -48,4 +48,21 @@ function getCurrentValues(){
 
     }
     return matrix;
+}
+
+function getAvailableValues()
+{
+    curr_grid = getCurrentValues();
+    let available_cells = [];
+    for(let i = 0; i < grid_col_size; i++)
+    {
+        for(let j =0; j < grid_row_size; j++)
+        {
+            if(curr_grid[i][j] == "")
+            {
+                available_cells.push([i,j]);
+            }
+        }
+    }
+    return available_cells;
 }
