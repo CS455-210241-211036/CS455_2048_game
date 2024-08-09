@@ -29,3 +29,23 @@ while(col_index_1 == col_index_2 && row_index_1 == row_index_2)
 
 matrix[row_index_1][col_index_1].firstElementChild.textContent = 2; 
 matrix[row_index_2][col_index_2].firstElementChild.textContent = 2;
+
+function getCurrentValues(){
+    let matrix = []
+    let row = []; 
+    for(i=1; i<=gridItems.length; i++){
+        if(i % 4 === 0){
+            let item = gridItems[i-1];
+            row.push(item.firstElementChild.innerText);
+            matrix.push(row);
+            row = [];
+        }
+
+        else {
+            let item = gridItems[i-1];
+            row.push(item.firstElementChild.innerText);
+        }
+
+    }
+    return matrix;
+}
