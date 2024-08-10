@@ -96,7 +96,7 @@ function moveLeft(arr)
         curr_cell = arr[i+1].firstElementChild;
         prev_cell = arr[i].firstElementChild;
         curr_val = parseInt(curr_cell.innerText);
-        prev_cell = parseInt(prev_val.innerText);
+        prev_val = parseInt(prev_cell.innerText);
         if(curr_val === prev_val && curr_val !== 0)
         {
             prev_cell.innerText = curr_val + prev_val;
