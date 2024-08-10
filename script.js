@@ -66,3 +66,43 @@ function getAvailableValues()
     }
     return available_cells;
 }
+
+function shiftLeft(arr)
+{
+    let curr_val;
+    let prev_val;
+    for(let i=0; i<arr.length-1; i++)
+    {
+        curr_val = arr[i+1].firstElementChild;
+        prev_val = arr[i].firstElementChild;
+        if(prev_val.innerText == 0)
+        {
+            prev_val.innerText = curr_val.innerText;
+            curr_val.innerText = "";
+        }
+    }
+}
+
+function moveLeft(arr)
+{
+    let curr_cell;
+    let prev_cell;
+    let curr_val;
+    let prev_val;
+    shiftLeft(arr);
+    
+    for(let i=0; i<arr.length-1; i++)
+    {
+        curr_cell = arr[i+1].firstElementChild;
+        prev_cell = arr[i].firstElementChild;
+        curr_val = parseInt(curr_cell.innerText);
+        prev_cell = parseInt(prev_val.innerText);
+        if(curr_val === prev_cell && curr_val !== 0)
+        {
+            prev_cell.innerText = curr_val + prev_val;
+            curr_cell.innerText = "";
+        }
+    }
+
+    shiftLeft(arr);
+}
