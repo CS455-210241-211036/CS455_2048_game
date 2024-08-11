@@ -162,7 +162,7 @@ function moveBlocks(e)
 	let row2 = curr_grid[1]; 
 	let row3 = curr_grid[2]; 
 	let row4 = curr_grid[3]; 
-    switch(e)
+    switch(e.key)
     {
         case "ArrowLeft": moveLeft(row1);
                           moveLeft(row2);
