@@ -148,6 +148,9 @@ function moveRight(arr) {
     shiftRight(arr);
 }
 
+document.addEventListener("keydown",moveBlocks);
+const arrayColumn = (arr,n) => arr.map((x) => x[n]);
+
 function moveBlocks(e)
 {
     curr_grid = getCurrentValues();
