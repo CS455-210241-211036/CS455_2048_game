@@ -188,4 +188,18 @@ function moveBlocks(e)
         default: return;
     }
     curr_grid = getCurrentValues();
+    generateNewBlock();
 }
+function generateNewBlock() { 
+    let available_cells = getAvailableValues();
+
+	if (available_cells.length !== 0) { 
+		let randCoord = Math.floor(Math.random() * available_cells.length); 
+		let coords = available_cells[randCoord]; 
+		let randNum = Math.floor(Math.random() * 2) + 1;
+
+		let tile = curr_grid[coords[0]][coords[1]].firstElementChild; 
+		tile.innerText = randNum; 
+        curr_grid = getCurrentValues();
+	} 
+} 
