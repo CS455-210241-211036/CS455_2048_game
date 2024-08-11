@@ -23,12 +23,12 @@ let col_index_2 = Math.floor(Math.random() * grid_row_size);
 
 while(col_index_1 == col_index_2 && row_index_1 == row_index_2)
 {
-    let row_index_2 = Math.floor(Math.random() * grid_col_size);
-    let col_index_2 = Math.floor(Math.random() * grid_row_size);
+    row_index_2 = Math.floor(Math.random() * grid_col_size);
+    col_index_2 = Math.floor(Math.random() * grid_row_size);
 }
 
-matrix[row_index_1][col_index_1].firstElementChild.textContent = 2; 
-matrix[row_index_2][col_index_2].firstElementChild.textContent = 2;
+curr_grid[row_index_1][col_index_1].firstElementChild.textContent = 2; 
+curr_grid[row_index_2][col_index_2].firstElementChild.textContent = 2;
 
 function getCurrentValues(){
     let matrix = []
