@@ -106,3 +106,37 @@ function moveLeft(arr)
 
     shiftLeft(arr);
 }
+
+function shiftRight(arr) {
+    let curr_val;
+    let next_val;
+    for(let i = arr.length - 1; i > 0; i--) {
+        curr_val = arr[i].firstElementChild;
+        next_val = arr[i-1].firstElementChild;
+        if(curr_val.innerText == 0) {
+            curr_val.innerText = next_val.innerText;
+            next_val.innerText = "";
+        }
+    }
+}
+
+function moveRight(arr) {
+    let curr_cell;
+    let next_cell;
+    let curr_val;
+    let next_val;
+    shiftRight(arr);
+    
+    for(let i = arr.length - 1; i > 0; i--) {
+        curr_cell = arr[i].firstElementChild;
+        next_cell = arr[i-1].firstElementChild;
+        curr_val = parseInt(curr_cell.innerText);
+        next_val = parseInt(next_cell.innerText);
+        if(curr_val === next_val && curr_val !== 0) {
+            curr_cell.innerText = curr_val + next_val;
+            next_cell.innerText = "";
+        }
+    }
+
+    shiftRight(arr);
+}
