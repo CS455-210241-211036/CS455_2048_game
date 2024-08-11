@@ -7,6 +7,7 @@ let i;
 let score=0;
 const score_val = document.querySelector(".score-value");
 const result = document.querySelector(".result");
+document.querySelector(".reset-btn").addEventListener("click", resetTheGrid)
 for(i=1; i<=gridItems.length; i++)
 {
     let item = gridItems[i-1];
@@ -263,4 +264,35 @@ function gameResult(status)
     {
         result.innerText = "You Lost the Game";
     }
+}
+
+function resetTheGrid()
+{
+    for(i=1; i<=gridItems.length; i++)
+        {
+            let item = gridItems[i-1];
+            item.firstElementChild.innerText = "";
+            row.push(item);
+            if(i%grid_row_size === 0)
+            {
+                curr_grid.push(row);
+                row = [];
+            }
+        }
+        
+        let row_index_1 = Math.floor(Math.random() * grid_col_size);
+        let row_index_2 = Math.floor(Math.random() * grid_col_size);
+        let col_index_1 = Math.floor(Math.random() * grid_row_size);
+        let col_index_2 = Math.floor(Math.random() * grid_row_size);
+        
+        while(col_index_1 == col_index_2 && row_index_1 == row_index_2)
+        {
+            row_index_2 = Math.floor(Math.random() * grid_col_size);
+            col_index_2 = Math.floor(Math.random() * grid_row_size);
+        }
+        
+        curr_grid[row_index_1][col_index_1].firstElementChild.textContent = 2; 
+        curr_grid[row_index_2][col_index_2].firstElementChild.textContent = 2;
+        
+        updateTileColors();
 }
