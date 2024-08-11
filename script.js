@@ -4,6 +4,9 @@ let row = [];
 let grid_row_size = 4;
 let grid_col_size = 4;
 let i;
+let score=0;
+const score_val = document.querySelector(".score-value");
+const result = document.querySelector(".result");
 for(i=1; i<=gridItems.length; i++)
 {
     let item = gridItems[i-1];
@@ -107,6 +110,11 @@ function moveLeft(arr)
         {
             prev_cell.innerText = curr_val + prev_val;
             curr_cell.innerText = "";
+            score = score + curr_val + prev_val;
+            if(curr_val + prev_val === 2048)
+                {
+                    gameResult(1);
+                }
         }
     }
 
@@ -145,6 +153,11 @@ function moveRight(arr) {
         if(curr_val === prev_val && curr_val !== 0) {
             curr_cell.innerText = curr_val + prev_val;
             prev_cell.innerText = "";
+            score = score + curr_val + prev_val;
+            if(curr_val + prev_val === 2048)
+            {
+                gameResult(1);
+            }
         }
     }
 
@@ -189,6 +202,7 @@ function moveBlocks(e)
                           break;
         default: return;
     }
+    score_val.innerText = score;
     updateTileColors();
     curr_grid = getCurrentValues();
     generateNewBlock();
@@ -205,8 +219,11 @@ function generateNewBlock() {
 		let tile = curr_grid[coords[0]][coords[1]].firstElementChild; 
 		tile.innerText = randNum; 
         updateTileColors();
-
-	} 
+	}
+    else
+    {
+        gameResult(0);
+    }
 } 
 
 function updateTileColors() {
@@ -233,5 +250,17 @@ function getTileColor(value) {
         case 1024: return "#CDB4DB";
         case 2048: return "#A4B5A4";
         default: return "#DCD3CB"; 
+    }
+}
+
+function gameResult(status)
+{
+    if(status === 1)
+    {
+        result.innerText = "You Win!";
+    }
+    else
+    {
+        result.innerText = "You Lost the Game";
     }
 }
