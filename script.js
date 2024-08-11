@@ -71,14 +71,17 @@ function shiftLeft(arr)
 {
     let curr_val;
     let prev_val;
-    for(let i=0; i<arr.length-1; i++)
+    for(let j=0; j<arr.length; i++)
     {
-        curr_val = arr[i+1].firstElementChild;
-        prev_val = arr[i].firstElementChild;
-        if(prev_val.innerText == 0)
+        for(let i=0; i<arr.length-1; i++)
         {
-            prev_val.innerText = curr_val.innerText;
-            curr_val.innerText = "";
+            curr_val = arr[i+1].firstElementChild;
+            prev_val = arr[i].firstElementChild;
+            if(prev_val.innerText == 0)
+            {
+                prev_val.innerText = curr_val.innerText;
+                curr_val.innerText = "";
+            }
         }
     }
 }
