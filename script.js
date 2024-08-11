@@ -37,14 +37,14 @@ function getCurrentValues(){
     for(i=1; i<=gridItems.length; i++){
         if(i % grid_row_size === 0){
             let item = gridItems[i-1];
-            row.push(item.firstElementChild.innerText);
+            row.push(item);
             matrix.push(row);
             row = [];
         }
 
         else {
             let item = gridItems[i-1];
-            row.push(item.firstElementChild.innerText);
+            row.push(item);
         }
 
     }
