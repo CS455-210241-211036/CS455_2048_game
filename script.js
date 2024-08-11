@@ -1,4 +1,4 @@
-const gridItems = Array.from(document.querySelectorAll(".grid-item"));
+let gridItems = Array.from(document.querySelectorAll(".grid-item"));
 let curr_grid = [];
 let row = [];
 let grid_row_size = 4;
@@ -31,6 +31,7 @@ curr_grid[row_index_1][col_index_1].firstElementChild.textContent = 2;
 curr_grid[row_index_2][col_index_2].firstElementChild.textContent = 2;
 
 function getCurrentValues(){
+    let gridItems = Array.from(document.querySelectorAll(".grid-item"));
     let matrix = []
     let row = []; 
     for(i=1; i<=gridItems.length; i++){
