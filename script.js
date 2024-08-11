@@ -59,7 +59,7 @@ function getAvailableValues()
     {
         for(let j =0; j < grid_row_size; j++)
         {
-            if(curr_grid[i][j] == "")
+            if(curr_grid[i][j].firstElementChild.innerText == "")
             {
                 available_cells.push([i,j]);
             }
@@ -189,6 +189,7 @@ function moveBlocks(e)
     }
     curr_grid = getCurrentValues();
     generateNewBlock();
+    curr_grid = getCurrentValues();
 }
 function generateNewBlock() { 
     let available_cells = getAvailableValues();
@@ -196,10 +197,10 @@ function generateNewBlock() {
 	if (available_cells.length !== 0) { 
 		let randCoord = Math.floor(Math.random() * available_cells.length); 
 		let coords = available_cells[randCoord]; 
-		let randNum = Math.floor(Math.random() * 2) + 1;
+		let randNum = (Math.floor(Math.random() * 2) + 1)*2;
 
 		let tile = curr_grid[coords[0]][coords[1]].firstElementChild; 
 		tile.innerText = randNum; 
-        curr_grid = getCurrentValues();
+
 	} 
 } 
