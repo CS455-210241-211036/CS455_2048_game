@@ -147,3 +147,41 @@ function moveRight(arr) {
 
     shiftRight(arr);
 }
+
+function moveBlocks(e)
+{
+    curr_grid = getCurrentValues();
+    let col1 = arrayColumn(curr_grid, 0); 
+	let col2 = arrayColumn(curr_grid, 1); 
+	let col3 = arrayColumn(curr_grid, 2); 
+	let col4 = arrayColumn(curr_grid, 3); 
+	let row1 = curr_grid[0]; 
+	let row2 = curr_grid[1]; 
+	let row3 = curr_grid[2]; 
+	let row4 = curr_grid[3]; 
+    switch(e)
+    {
+        case "ArrowLeft": moveLeft(row1);
+                          moveLeft(row2);
+                          moveLeft(row3);
+                          moveLeft(row4);
+                          break;
+        case "ArrowRight": moveRight(row1);
+                           moveRight(row2);
+                           moveRight(row3);
+                           moveRight(row4);
+                           break;
+        case "ArrowUp": moveLeft(col1);
+                        moveLeft(col2);
+                        moveLeft(col3);
+                        moveLeft(col4);
+                        break;
+        case "ArrowDown": moveRight(col1);
+                          moveRight(col2);
+                          moveRight(col3);
+                          moveRight(col4);
+                          break;
+        default: return;
+    }
+    curr_grid = getCurrentValues();
+}
