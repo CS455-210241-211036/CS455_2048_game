@@ -1,4 +1,5 @@
 let gridItems = Array.from(document.querySelectorAll(".grid-item"));
+let prev_grid = [];
 let curr_grid = [];
 let row = [];
 let grid_row_size = 4;
@@ -144,6 +145,7 @@ const arrayColumn = (arr,n) => arr.map((x) => x[n]);
 function moveBlocks(e)
 {
     curr_grid = getCurrentValues();
+    prev_grid = curr_grid;
     let col1 = arrayColumn(curr_grid, 0); 
 	let col2 = arrayColumn(curr_grid, 1); 
 	let col3 = arrayColumn(curr_grid, 2); 
@@ -179,8 +181,25 @@ function moveBlocks(e)
     score_val.innerText = score;
     updateTileColors();
     curr_grid = getCurrentValues();
-    generateNewBlock();
-    curr_grid = getCurrentValues();
+    if(!check_matrix_equal(curr_grid,prev_grid))
+        {
+            generateNewBlock();
+            curr_grid = getCurrentValues();
+        }
+}
+function check_matrix_equal(mat_1,mat_2)
+{
+    for(let i=0;i<grid_col_size;i++)
+    {
+        for(let j =0;j<grid_row_size;j++)
+        {
+            if(mat_1[i][j].firstElementChild.innerText != mat_2[i][j].firstElementChild.innerText)
+            {
+                return 0;
+            }
+        }
+    }
+    return 1;
 }
 function generateNewBlock() { 
     let available_cells = getAvailableValues();
