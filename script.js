@@ -31,6 +31,26 @@ function getCurrentValues(){
     return matrix;
 }
 
+function getCurrentNumericalValues(){
+    let gridItems = Array.from(document.querySelectorAll(".grid-item"));
+    let matrix = []
+    let row = []; 
+    for(i=1; i<=gridItems.length; i++){
+        if(i % grid_row_size === 0){
+            let item = gridItems[i-1];
+            row.push(item.firstElementChild.innerText);
+            matrix.push(row);
+            row = [];
+        }
+
+        else {
+            let item = gridItems[i-1];
+            row.push(item.firstElementChild.innerText);
+        }
+
+    }
+    return matrix;
+}
 function getAvailableValues()
 {
     curr_grid = getCurrentValues();
@@ -145,7 +165,7 @@ const arrayColumn = (arr,n) => arr.map((x) => x[n]);
 function moveBlocks(e)
 {
     curr_grid = getCurrentValues();
-    prev_grid = curr_grid;
+    prev_grid = getCurrentNumericalValues();
     let col1 = arrayColumn(curr_grid, 0); 
 	let col2 = arrayColumn(curr_grid, 1); 
 	let col3 = arrayColumn(curr_grid, 2); 
@@ -187,13 +207,13 @@ function moveBlocks(e)
             curr_grid = getCurrentValues();
         }
 }
-function check_matrix_equal(mat_1,mat_2)
+function check_matrix_equal(grid,mat_2)
 {
     for(let i=0;i<grid_col_size;i++)
     {
         for(let j =0;j<grid_row_size;j++)
         {
-            if(mat_1[i][j].firstElementChild.innerText != mat_2[i][j].firstElementChild.innerText)
+            if(grid[i][j].firstElementChild.innerText != mat_2[i][j])
             {
                 return 0;
             }
