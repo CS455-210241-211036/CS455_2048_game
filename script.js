@@ -206,6 +206,14 @@ function moveBlocks(e)
             generateNewBlock();
             curr_grid = getCurrentValues();
         }
+        else 
+        {
+            let available_cells = getAvailableValues();
+            if(available_cells == 0)
+            {
+                gameResult(0);
+            }
+        }
 }
 function check_matrix_equal(grid,mat_2)
 {
