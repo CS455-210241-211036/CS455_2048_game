@@ -4,6 +4,7 @@
   "description": "URL: https://github.com/CS455-210241-211036/CS455_2048_game",
   "main": "script.js",
   "scripts": {
+    "lint": "eslint .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
