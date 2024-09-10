@@ -11,8 +11,6 @@ export default [
     },
     rules: {
 
-    'sonarjs/no-duplicate-string': 'error',
-
     'max-lines': ['error', 300],
 
     'max-statements-per-line': ['error', { max: 1 }],
