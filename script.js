@@ -9,6 +9,81 @@ let score;
 const score_val = document.querySelector(".score-value");
 const result = document.querySelector(".result");
 document.querySelector(".reset-btn").addEventListener("click", startTheGame);
+
+function gameResult(status)
+{
+    if(status === 1)
+    {
+        result.innerText = "You Win!";
+    }
+    else
+    {
+        result.innerText = "You Lost the Game";
+    }
+}
+
+function getTileColor(value) {
+    switch (value) {
+        case 2: return "#FAE3D9";
+        case 4: return "#FFC4C4";
+        case 8: return "#FFAAA5";
+        case 16: return "#FFD3B6";
+        case 32: return "#FF8C94";
+        case 64: return "#FF847C";
+        case 128: return "#E7B4B4";
+        case 256: return "#E9B0E5";
+        case 512: return "#CC99C9";
+        case 1024: return "#CDB4DB";
+        case 2048: return "#A4B5A4";
+        default: return "#DCD3CB"; 
+    }
+}
+
+function updateTileColors() {
+    for (let row of curr_grid) {
+        for (let tile of row) {
+            let value = parseInt(tile.firstElementChild.innerText);
+            let color = getTileColor(value);
+            tile.style.backgroundColor = color;
+        }
+    }
+}
+
+function startTheGame()
+{
+    gridItems = Array.from(document.querySelectorAll(".grid-item"));
+    result.innerText = "";
+    score=0;
+    score_val.innerText = score;
+    for(i=1; i<=gridItems.length; i++)
+        {
+            let item = gridItems[i-1];
+            item.firstElementChild.innerText = "";
+            row.push(item);
+            if(i%grid_row_size === 0)
+            {
+                curr_grid.push(row);
+                row = [];
+            }
+        }
+        
+        let row_index_1 = Math.floor(Math.random() * grid_col_size);
+        let row_index_2 = Math.floor(Math.random() * grid_col_size);
+        let col_index_1 = Math.floor(Math.random() * grid_row_size);
+        let col_index_2 = Math.floor(Math.random() * grid_row_size);
+        
+        while(col_index_1 == col_index_2 && row_index_1 == row_index_2)
+        {
+            row_index_2 = Math.floor(Math.random() * grid_col_size);
+            col_index_2 = Math.floor(Math.random() * grid_row_size);
+        }
+        
+        curr_grid[row_index_1][col_index_1].firstElementChild.textContent = 2; 
+        curr_grid[row_index_2][col_index_2].firstElementChild.textContent = 2;
+        
+        updateTileColors();
+}
+
 startTheGame()
 function getCurrentValues(){
     let gridItems = Array.from(document.querySelectorAll(".grid-item"));
@@ -246,77 +321,3 @@ function generateNewBlock() {
         gameResult(0);
     }
 } 
-
-function updateTileColors() {
-    for (let row of curr_grid) {
-        for (let tile of row) {
-            let value = parseInt(tile.firstElementChild.innerText);
-            let color = getTileColor(value);
-            tile.style.backgroundColor = color;
-        }
-    }
-}
-
-function getTileColor(value) {
-    switch (value) {
-        case 2: return "#FAE3D9";
-        case 4: return "#FFC4C4";
-        case 8: return "#FFAAA5";
-        case 16: return "#FFD3B6";
-        case 32: return "#FF8C94";
-        case 64: return "#FF847C";
-        case 128: return "#E7B4B4";
-        case 256: return "#E9B0E5";
-        case 512: return "#CC99C9";
-        case 1024: return "#CDB4DB";
-        case 2048: return "#A4B5A4";
-        default: return "#DCD3CB"; 
-    }
-}
-
-function gameResult(status)
-{
-    if(status === 1)
-    {
-        result.innerText = "You Win!";
-    }
-    else
-    {
-        result.innerText = "You Lost the Game";
-    }
-}
-
-function startTheGame()
-{
-    gridItems = Array.from(document.querySelectorAll(".grid-item"));
-    result.innerText = "";
-    score=0;
-    score_val.innerText = score;
-    for(i=1; i<=gridItems.length; i++)
-        {
-            let item = gridItems[i-1];
-            item.firstElementChild.innerText = "";
-            row.push(item);
-            if(i%grid_row_size === 0)
-            {
-                curr_grid.push(row);
-                row = [];
-            }
-        }
-        
-        let row_index_1 = Math.floor(Math.random() * grid_col_size);
-        let row_index_2 = Math.floor(Math.random() * grid_col_size);
-        let col_index_1 = Math.floor(Math.random() * grid_row_size);
-        let col_index_2 = Math.floor(Math.random() * grid_row_size);
-        
-        while(col_index_1 == col_index_2 && row_index_1 == row_index_2)
-        {
-            row_index_2 = Math.floor(Math.random() * grid_col_size);
-            col_index_2 = Math.floor(Math.random() * grid_row_size);
-        }
-        
-        curr_grid[row_index_1][col_index_1].firstElementChild.textContent = 2; 
-        curr_grid[row_index_2][col_index_2].firstElementChild.textContent = 2;
-        
-        updateTileColors();
-}
