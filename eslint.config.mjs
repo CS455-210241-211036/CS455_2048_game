@@ -30,8 +30,6 @@ export default [
     "no-use-before-define": "error",
 
     'complexity': ['warn', { max: 10 }],
-
-    'sonarjs/no-small-switch': 'warn',
     },
   },
   pluginJs.configs.recommended,
