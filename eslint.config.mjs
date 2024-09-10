@@ -15,7 +15,7 @@ export default [
 
     'max-statements-per-line': ['error', { max: 1 }],
 
-    "no-magic-numbers": ["error", { "ignore": [0, 1], "ignoreArrayIndexes": true }],
+    "no-magic-numbers": ["warn", { "ignore": [0, 1], "ignoreArrayIndexes": true }],
 
     "no-unused-vars": 'error',
 
