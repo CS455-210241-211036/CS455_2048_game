@@ -8,7 +8,6 @@ let i;
 let score;
 const score_val = document.querySelector(".score-value");
 const result = document.querySelector(".result");
-document.querySelector(".reset-btn").addEventListener("click", startTheGame);
 
 function gameResult(status)
 {
@@ -84,7 +83,9 @@ function startTheGame()
         updateTileColors();
 }
 
+document.querySelector(".reset-btn").addEventListener("click", startTheGame);
 startTheGame()
+
 function getCurrentValues(){
     let gridItems = Array.from(document.querySelectorAll(".grid-item"));
     let matrix = []
@@ -126,6 +127,7 @@ function getCurrentNumericalValues(){
     }
     return matrix;
 }
+
 function getAvailableValues()
 {
     curr_grid = getCurrentValues();
@@ -161,6 +163,39 @@ function shiftLeft(arr)
         }
     }
 }
+
+function check_matrix_equal(grid,mat_2)
+{
+    for(let i=0;i<grid_col_size;i++)
+    {
+        for(let j =0;j<grid_row_size;j++)
+        {
+            if(grid[i][j].firstElementChild.innerText != mat_2[i][j])
+            {
+                return 0;
+            }
+        }
+    }
+    return 1;
+}
+
+function generateNewBlock() { 
+    let available_cells = getAvailableValues();
+
+	if (available_cells.length !== 0) { 
+		let randCoord = Math.floor(Math.random() * available_cells.length); 
+		let coords = available_cells[randCoord]; 
+		let randNum = (Math.floor(Math.random() * 2) + 1)*2;
+
+		let tile = curr_grid[coords[0]][coords[1]].firstElementChild; 
+		tile.innerText = randNum; 
+        updateTileColors();
+	}
+    else
+    {
+        gameResult(0);
+    }
+} 
 
 function moveLeft(arr)
 {
@@ -234,7 +269,6 @@ function moveRight(arr) {
     shiftRight(arr);
 }
 
-document.addEventListener("keydown",moveBlocks);
 const arrayColumn = (arr,n) => arr.map((x) => x[n]);
 
 function moveBlocks(e)
@@ -290,34 +324,5 @@ function moveBlocks(e)
             }
         }
 }
-function check_matrix_equal(grid,mat_2)
-{
-    for(let i=0;i<grid_col_size;i++)
-    {
-        for(let j =0;j<grid_row_size;j++)
-        {
-            if(grid[i][j].firstElementChild.innerText != mat_2[i][j])
-            {
-                return 0;
-            }
-        }
-    }
-    return 1;
-}
-function generateNewBlock() { 
-    let available_cells = getAvailableValues();
 
-	if (available_cells.length !== 0) { 
-		let randCoord = Math.floor(Math.random() * available_cells.length); 
-		let coords = available_cells[randCoord]; 
-		let randNum = (Math.floor(Math.random() * 2) + 1)*2;
-
-		let tile = curr_grid[coords[0]][coords[1]].firstElementChild; 
-		tile.innerText = randNum; 
-        updateTileColors();
-	}
-    else
-    {
-        gameResult(0);
-    }
-} 
+document.addEventListener("keydown",moveBlocks);
