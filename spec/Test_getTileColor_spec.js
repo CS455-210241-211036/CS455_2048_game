@@ -1,4 +1,4 @@
-import {getTileColor} from '../script'
+import {getTileColor} from '../script';
 
 describe('getTileColor', () => {
 
