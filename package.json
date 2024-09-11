@@ -5,13 +5,28 @@
   "main": "script.js",
   "scripts": {
     "lint": "eslint .",
-    "test": "jasmine"
+    "test": "jasmine",
+    "coverage": "c8 npm test"
+  },
+  "c8": {
+    "exclude": [
+      "spec/*"
+    ],
+    "reporter": [
+      "text",
+      "html"
+    ],
+    "reporterOptions": {
+      "outputDir": "coverage"
+    },
+    "src": "script.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@eslint/js": "^9.10.0",
+    "c8": "^10.1.2",
     "eslint": "^9.10.0",
     "eslint-plugin-jasmine": "^4.2.1",
     "globals": "^15.9.0",
