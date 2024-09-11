@@ -21,7 +21,7 @@ function gameResult(status)
     }
 }
 
-function getTileColor(value) {
+export function getTileColor(value) {
     const colorMap = {
         2: "#FAE3D9",
         4: "#FFC4C4",
