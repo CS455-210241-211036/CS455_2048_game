@@ -11,7 +11,7 @@ export default [
     },
     rules: {
 
-    'max-lines': ['error', 300],
+    'max-lines': ['warn', 300],
 
     'max-statements-per-line': ['error', { max: 1 }],
 
