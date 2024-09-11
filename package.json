@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "URL: https://github.com/CS455-210241-211036/CS455_2048_game",
   "main": "script.js",
+  "type": "module",
   "scripts": {
     "lint": "eslint .",
     "test": "jasmine",
