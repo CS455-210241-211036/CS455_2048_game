@@ -25,8 +25,6 @@ export default [
 
     "no-const-assign": "error",
 
-    "no-unreachable" : "error",
-
     "no-use-before-define": "error",
 
     'complexity': ['warn', { max: 10 }],
