@@ -1,4 +1,4 @@
-
+/* eslint-disable no-undef, no-global-assign */
 const { JSDOM } = require('jsdom');
 const { updateTileColors } = require('./script.js');
 
@@ -17,9 +17,7 @@ const { updateTileColors } = require('./script.js');
           <div class="result"></div>
           <button class="reset-btn">Reset</button>
         `;
-      
-        const { startTheGame,updateTileColors,getTileColor} = require('./script');
-      
+        const { startTheGame} = require('./script');
         // Reset the game before each test
         await startTheGame(); // Await if startTheGame is asynchronous
       });
@@ -30,17 +28,7 @@ const { updateTileColors } = require('./script.js');
       });
 
     test('should update tile color based on value', () => {
-      // Mock the getTileColor function
-    //   const mockGetTileColor = jest.fn(value => {
-    //     const colorMap = {
-    //       2: '#FAE3D9',
-    //       4: '#FFC4C4',
-    //       8: '#FFAAA5',
-    //       // Add more colors if needed
-    //     };
-    //     return colorMap[value] || '#DCD3CB';
-    //   });
-  
+      /* eslint-enable no-undef */
       // Set up grid items
       const tiles = Array.from(document.querySelectorAll('.grid-item'));
       tiles[0].firstElementChild.innerText = 2;
@@ -61,6 +49,6 @@ const { updateTileColors } = require('./script.js');
       expect(rgbToHex(tiles[1].style.backgroundColor)).toBe('#FFC4C4');
     });
   });
-  
+/* eslint-enable no-undef, no-global-assign */
 
 

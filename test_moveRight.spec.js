@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const { JSDOM } = require('jsdom');
 
 describe('2048 Game', () => {
@@ -39,6 +40,5 @@ describe('2048 Game', () => {
 
     expect(tiles[3].firstElementChild.innerText).toBe(4);
   });
-
 });
-
+/* eslint-enable no-undef */
