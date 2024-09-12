@@ -47,7 +47,7 @@ function updateTileColors() {
         }
     }
 }
-
+  
 function startTheGame()
 {
     gridItems = Array.from(document.querySelectorAll(".grid-item"));
@@ -82,8 +82,25 @@ function startTheGame()
         console.log(row_index_1,col_index_1,row_index_2,col_index_2);
         
         updateTileColors();
-        document.querySelector(".reset-btn").addEventListener("click", startTheGame);
+    
 }
+function addResetButtonListener() {
+	const resetButton = document.querySelector(".reset-btn");
+	if (resetButton) {
+	  resetButton.addEventListener("click", startTheGame);
+	}
+  }
+  
+  // Call the function to add the listener
+  addResetButtonListener();
+
+  function addStartButtonListener() {
+	const startButton = document.querySelector(".start-btn");
+	if (startButton) {
+	  startButton.addEventListener("click", startTheGame);
+	}
+  }
+  addStartButtonListener();
 
 
 //startTheGame()
