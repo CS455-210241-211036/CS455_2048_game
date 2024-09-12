@@ -328,4 +328,6 @@ function moveBlocks(e)
 }
 
 document.addEventListener("keydown",moveBlocks);
+/* eslint-disable no-undef */
 module.exports = { startTheGame,updateTileColors, getTileColor };
+/* eslint-enable no-undef */

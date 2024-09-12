@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const { JSDOM } = require('jsdom');
 
 describe('2048 Game', () => {
@@ -41,3 +42,4 @@ describe('2048 Game', () => {
     expect(twoCount).toBe(2); // Expect exactly two tiles with value '2'
 });
 });
+/* eslint-enable no-undef */

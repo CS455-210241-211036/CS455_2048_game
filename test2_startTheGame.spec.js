@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const { JSDOM } = require('jsdom');
 
 describe('2048 Game', () => {
@@ -37,6 +38,5 @@ describe('2048 Game', () => {
     let emptyTileCount = tiles.filter(tile => tile.firstElementChild.innerText === '').length;
     expect(emptyTileCount).toBe(14);
   });
-
-
 });
+/* eslint-enable no-undef */

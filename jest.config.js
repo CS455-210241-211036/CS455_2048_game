@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 // jest.config.js
 module.exports = {
     setupFiles: ['./jest.setup.js'],
@@ -13,5 +14,5 @@ module.exports = {
       "statements": 50
     }
   }
-  };
-  
+};
+/* eslint-enable no-undef */
