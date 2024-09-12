@@ -21,7 +21,7 @@ function gameResult(status)
     }
 }
 
-export function getTileColor(value) {
+ function getTileColor(value) {
     const colorMap = {
         2: "#FAE3D9",
         4: "#FFC4C4",
@@ -77,14 +77,16 @@ function startTheGame()
             col_index_2 = Math.floor(Math.random() * grid_row_size);
         }
         
-        curr_grid[row_index_1][col_index_1].firstElementChild.textContent = 2; 
-        curr_grid[row_index_2][col_index_2].firstElementChild.textContent = 2;
+        curr_grid[row_index_1][col_index_1].firstElementChild.innerText = 2; 
+        curr_grid[row_index_2][col_index_2].firstElementChild.innerText = 2;
+        console.log(row_index_1,col_index_1,row_index_2,col_index_2);
         
         updateTileColors();
+        document.querySelector(".reset-btn").addEventListener("click", startTheGame);
 }
 
-document.querySelector(".reset-btn").addEventListener("click", startTheGame);
-startTheGame()
+
+//startTheGame()
 
 function getCurrentValues(){
     let gridItems = Array.from(document.querySelectorAll(".grid-item"));
@@ -326,3 +328,4 @@ function moveBlocks(e)
 }
 
 document.addEventListener("keydown",moveBlocks);
+module.exports = { startTheGame,updateTileColors, getTileColor };
