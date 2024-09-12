@@ -21,6 +21,8 @@ export default [
 
     "no-unreachable": "error",
     
+    "no-undef": "warn",
+    
     "no-cond-assign": "warn",
 
     "no-const-assign": "error",
