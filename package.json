@@ -5,8 +5,8 @@
   "main": "script.js",
   "scripts": {
     "lint": "eslint .",
-    "test": "jasmine",
-    "coverage": "c8 npm test"
+    "test": "jest",
+    "coverage": "jest --coverage"
   },
   "c8": {
     "exclude": [
