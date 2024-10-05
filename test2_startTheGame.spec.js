@@ -17,7 +17,7 @@ describe('2048 Game', () => {
       <div class="score-value"></div>
       <div class="result"></div>
       <input type="text" id="playerName" value="Test Player" />
-      <button class="reset-btn">Reset</button>
+      <button class="start-btn">Start</button>
     `;
   
     const { startTheGame } = require('./public/script');
