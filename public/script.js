@@ -60,6 +60,11 @@ function updateTileColors() {
   
 function startTheGame()
 {
+    playerName = document.getElementById('playerName').value;
+    if (!playerName) {
+      alert('Please enter your name to start the game.');
+      return;
+    }
     gridItems = Array.from(document.querySelectorAll(".grid-item"));
     result.innerText = "";
     score=0;
@@ -101,9 +106,6 @@ function startTheGame()
 	}
   }
   addStartButtonListener();
-
-
-//startTheGame()
 
 function getCurrentValues(){
     let gridItems = Array.from(document.querySelectorAll(".grid-item"));
