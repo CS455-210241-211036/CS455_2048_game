@@ -6,6 +6,7 @@ let grid_row_size = 4;
 let grid_col_size = 4;
 let i;
 let score;
+let playerName;
 const score_val = document.querySelector(".score-value");
 const result = document.querySelector(".result");
 
@@ -19,6 +20,15 @@ function gameResult(status)
     {
         result.innerText = "You Lost the Game";
     }
+    fetch('/api/save-score', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({playerName, score}),
+      })
+        .then(response => response.json())
+        .catch(error => console.error('Error:', error));
 }
 
  function getTileColor(value) {
