@@ -19,7 +19,7 @@ describe('2048 Game', () => {
       <button class="reset-btn">Reset</button>
     `;
   
-    const { startTheGame } = require('./script');
+    const { startTheGame } = require('./public/script');
   
     // Reset the game before each test
    await startTheGame(); // Await if startTheGame is asynchronous
