@@ -15,6 +15,7 @@ const { updateTileColors } = require('./public/script');
           </div>
           <div class="score-value"></div>
           <div class="result"></div>
+          <input type="text" id="playerName" value="Test Player" />
           <button class="reset-btn">Reset</button>
         `;
         const { startTheGame} = require('./public/script');

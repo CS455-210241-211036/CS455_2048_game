@@ -16,6 +16,7 @@ describe('2048 Game', () => {
       </div>
       <div class="score-value"></div>
       <div class="result"></div>
+      <input type="text" id="playerName" value="Test Player" />
       <button class="reset-btn">Reset</button>
     `;
   
