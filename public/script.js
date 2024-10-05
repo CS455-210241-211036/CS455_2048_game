@@ -94,16 +94,6 @@ function startTheGame()
         updateTileColors();
     
 }
-function addResetButtonListener() {
-	const resetButton = document.querySelector(".reset-btn");
-	if (resetButton) {
-	  resetButton.addEventListener("click", startTheGame);
-	}
-  }
-  
-  // Call the function to add the listener
-  addResetButtonListener();
-
   function addStartButtonListener() {
 	const startButton = document.querySelector(".start-btn");
 	if (startButton) {
