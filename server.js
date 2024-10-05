@@ -1,6 +1,8 @@
+/* eslint-disable no-undef */
 const express = require('express');
 const bodyParser = require('body-parser');
 const sqlite3 = require('sqlite3').verbose();
+/* eslint-enable no-undef */
 const app = express();
 const port = 3000;
 
