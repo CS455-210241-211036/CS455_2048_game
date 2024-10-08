@@ -10,6 +10,19 @@ let playerName;
 const score_val = document.querySelector(".score-value");
 const result = document.querySelector(".result");
 
+function updateLeaderboard(leaderboardData) {
+    leaderboardTableBody.innerHTML = "";
+    leaderboardData.forEach((entry, index) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+            <td>${index + 1}</td>
+            <td>${entry.playerName}</td>
+            <td>${entry.score}</td>
+        `;
+        leaderboardTableBody.appendChild(row);
+    });
+}
+
 function gameResult(status)
 {
     if(status === 1)
@@ -28,6 +41,9 @@ function gameResult(status)
         body: JSON.stringify({playerName, score}),
       })
         .then(response => response.json())
+        .then(data => {
+            updateLeaderboard(data);
+        })
         .catch(error => console.error('Error:', error));
 }
 
