@@ -35,7 +35,20 @@ app.post('/api/save-score', (req, res) => {
       }
     });
   });
+
+// Fetch the top 10 leaderboard scores from the database
+app.get('/api/get-leaderboard', (req, res) => {
+  const query = `SELECT playerName, score, date FROM scores ORDER BY score DESC LIMIT 10`;
   
+  db.all(query, [], (err, rows) => {
+    if (err) {
+      res.status(500).json({ message: 'Error retrieving leaderboard', error: err.message });
+    } else {
+      res.json(rows);
+    }
+  });
+});
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
