@@ -9,19 +9,33 @@ let score;
 let playerName;
 const score_val = document.querySelector(".score-value");
 const result = document.querySelector(".result");
+const leaderboardTableBody = document.querySelector("#leaderboard tbody")
 
-function updateLeaderboard(leaderboardData) {
-    leaderboardTableBody.innerHTML = "";
-    leaderboardData.forEach((entry, index) => {
-        const row = document.createElement("tr");
-        row.innerHTML = `
-            <td>${index + 1}</td>
-            <td>${entry.playerName}</td>
-            <td>${entry.score}</td>
-        `;
-        leaderboardTableBody.appendChild(row);
+function updateLeaderboard() {
+    fetch('/api/get-leaderboard')
+    .then(response => response.json())
+    .then(leaderboardData => {
+      if (Array.isArray(leaderboardData)) {
+        leaderboardTableBody.innerHTML = "";
+        leaderboardData.forEach((entry, index) => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${index + 1}</td>
+                <td>${entry.playerName}</td>
+                <td>${entry.score}</td>
+            `;
+            leaderboardTableBody.appendChild(row);
+        });
+      } else {
+        console.error('Leaderboard data is not an array:', leaderboardData);
+      }
+    })
+    .catch(error => {
+      console.error('Error fetching leaderboard:', error);
     });
 }
+
+updateLeaderboard();
 
 function gameResult(status)
 {
@@ -41,10 +55,8 @@ function gameResult(status)
         body: JSON.stringify({playerName, score}),
       })
         .then(response => response.json())
-        .then(data => {
-            updateLeaderboard(data);
-        })
         .catch(error => console.error('Error:', error));
+    updateLeaderboard();
 }
 
  function getTileColor(value) {
