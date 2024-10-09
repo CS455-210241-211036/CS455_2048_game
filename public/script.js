@@ -21,7 +21,7 @@ function updateLeaderboard() {
             const row = document.createElement("tr");
             row.innerHTML = `
                 <td>${index + 1}</td>
-                <td>${entry.playerName}</td>
+                <td>${entry.playerName || "Unknown"}</td> 
                 <td>${entry.score}</td>
             `;
             leaderboardTableBody.appendChild(row);

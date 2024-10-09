@@ -52,7 +52,7 @@ app.post('/api/save-score', (req, res) => {
 });
 
 app.get('/api/get-leaderboard', (req, res) => {
-    const query = `SELECT playerName, score, date FROM scores ORDER BY score DESC LIMIT 10`;
+    const query = `SELECT playerName, score FROM scores ORDER BY score DESC LIMIT 10`;
     
     pool.query(query, (err, result) => {
         if (err) {
