@@ -47,6 +47,7 @@ function gameResult(status)
     {
         result.innerText = "You Lost the Game";
     }
+    console.log('Sending score:', { playerName, score });
     fetch('/api/save-score', {
         method: 'POST',
         headers: {
