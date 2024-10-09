@@ -29,7 +29,7 @@ pool.connect(err => {
 // Create the scores table if it doesn't exist
 pool.query(`CREATE TABLE IF NOT EXISTS scores (
     id SERIAL PRIMARY KEY,
-    playerName TEXT,
+    playername TEXT,
     score INTEGER,
     date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 )`, (err) => {
@@ -40,7 +40,7 @@ pool.query(`CREATE TABLE IF NOT EXISTS scores (
 
 app.post('/api/save-score', (req, res) => {
     const { playerName, score } = req.body;
-    const query = `INSERT INTO scores (playerName, score) VALUES ($1, $2)`;
+    const query = `INSERT INTO scores (playername, score) VALUES ($1, $2)`;
 
     pool.query(query, [playerName, score], (err) => {
         if (err) {
@@ -52,7 +52,7 @@ app.post('/api/save-score', (req, res) => {
 });
 
 app.get('/api/get-leaderboard', (req, res) => {
-    const query = `SELECT playerName, score FROM scores ORDER BY score DESC LIMIT 10`;
+    const query = `SELECT playername, score FROM scores ORDER BY score DESC LIMIT 10`;
     
     pool.query(query, (err, result) => {
         if (err) {
