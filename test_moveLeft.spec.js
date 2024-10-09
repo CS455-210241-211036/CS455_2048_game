@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const { JSDOM } = require('jsdom');
 
 describe('2048 Game', () => {
