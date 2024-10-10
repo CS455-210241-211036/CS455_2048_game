@@ -9,7 +9,7 @@ let score;
 let playerName;
 const score_val = document.querySelector(".score-value");
 const result = document.querySelector(".result");
-let leaderboardTableBody;
+let leaderboardTableBody = document.querySelector("#leaderboard tbody");
 
 function updateLeaderboard() {
     fetch(`/api/get-leaderboard`)
