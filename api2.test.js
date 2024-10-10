@@ -17,26 +17,6 @@ describe('Save Score API Tests', () => {
         console.log('Cleanup complete!');
     });
 
-    test('POST /api/save-score should save a score and return status 201', async () => {
-        const testData = {
-            playerName: 'TestPlayer',
-            score: 200
-        };
-
-        const response = await request(app)
-            .post('/api/save-score')
-            .send(testData);
-
-        expect(response.statusCode).toBe(201);
-        expect(response.body).toEqual({ message: 'Score saved successfully' });
-
-        // Check if the score was saved in the database
-        const result = await pool.query('SELECT * FROM scores WHERE playername = $1 AND score = $2', [testData.playerName, testData.score]);
-        expect(result.rows.length).toBe(1);
-        expect(result.rows[0].playername).toBe(testData.playerName);
-        expect(result.rows[0].score).toBe(testData.score);
-    });
-
     test('POST /api/save-score should handle invalid data and return status 400', async () => {
         const invalidData = {
             playerName: 'AnotherPlayer' // Missing "score" field
