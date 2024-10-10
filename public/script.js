@@ -16,7 +16,7 @@ function updateLeaderboard() {
     .then(response => response.json())
     .then(leaderboardData => {
       if (Array.isArray(leaderboardData)) {
-        // leaderboardTableBody.innerHTML = "";
+        leaderboardTableBody.innerHTML = "";
         leaderboardData.forEach((entry, index) => {
             const row = document.createElement("tr");
             row.innerHTML = `
