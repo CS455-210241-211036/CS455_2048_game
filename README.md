@@ -1,6 +1,7 @@
 **CS455_2048_game**
 - **Press Start Game Button to start the game**
-- URL for game: https://cs455-210241-211036.github.io/CS455_2048_game/
+- URL for game: https://cs4552048game-production.up.railway.app
+
 - Linter: ESLint
 - Unit Testing and Coverage: Jest
 - Refactoring: Reordered the functions
