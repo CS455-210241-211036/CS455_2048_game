@@ -9,14 +9,14 @@ let score;
 let playerName;
 const score_val = document.querySelector(".score-value");
 const result = document.querySelector(".result");
-const leaderboardTableBody = document.querySelector("#leaderboard tbody")
+let leaderboardTableBody;
 
 function updateLeaderboard() {
-    fetch('/api/get-leaderboard')
+    fetch(`/api/get-leaderboard`)
     .then(response => response.json())
     .then(leaderboardData => {
       if (Array.isArray(leaderboardData)) {
-        leaderboardTableBody.innerHTML = "";
+        // leaderboardTableBody.innerHTML = "";
         leaderboardData.forEach((entry, index) => {
             const row = document.createElement("tr");
             row.innerHTML = `
@@ -86,7 +86,52 @@ function updateTileColors() {
         }
     }
 }
-  
+function getCurrentValues(){
+    let gridItems = Array.from(document.querySelectorAll(".grid-item"));
+    let matrix = []
+    let row = []; 
+    for(i=1; i<=gridItems.length; i++){
+        if(i % grid_row_size === 0){
+            let item = gridItems[i-1];
+            row.push(item);
+            matrix.push(row);
+            row = [];
+        }
+
+        else {
+            let item = gridItems[i-1];
+            row.push(item);
+        }
+
+    }
+    return matrix;
+}
+function getAvailableValues()
+{
+    curr_grid = getCurrentValues();
+    let available_cells = [];
+    for(let i = 0; i < grid_col_size; i++)
+    {
+        for(let j =0; j < grid_row_size; j++)
+        {
+            if(curr_grid[i][j].firstElementChild.innerText == "")
+            {
+                available_cells.push([i,j]);
+            }
+        }
+    }
+    return available_cells;
+}
+
+function placeRandomTwo() {
+    let availableCells = getAvailableValues();
+    if (availableCells.length === 0) return;
+
+    let randomIndex = Math.floor(Math.random() * availableCells.length);
+    let [rowIdx, colIdx] = availableCells[randomIndex];
+    
+    curr_grid[rowIdx][colIdx].firstElementChild.innerText = 2; // Place the tile
+}
 function startTheGame()
 {
     playerName = document.getElementById('playerName').value;
@@ -109,25 +154,28 @@ function startTheGame()
                 row = [];
             }
         }
+        placeRandomTwo();
+        placeRandomTwo()
         
-        let row_index_1 = Math.floor(Math.random() * grid_col_size);
-        let row_index_2 = Math.floor(Math.random() * grid_col_size);
-        let col_index_1 = Math.floor(Math.random() * grid_row_size);
-        let col_index_2 = Math.floor(Math.random() * grid_row_size);
+        // let row_index_1 = Math.floor(Math.random() * grid_col_size);
+        // let row_index_2 = Math.floor(Math.random() * grid_col_size);
+        // let col_index_1 = Math.floor(Math.random() * grid_row_size);
+        // let col_index_2 = Math.floor(Math.random() * grid_row_size);
         
-        while(col_index_1 == col_index_2 && row_index_1 == row_index_2)
-        {
-            row_index_2 = Math.floor(Math.random() * grid_col_size);
-            col_index_2 = Math.floor(Math.random() * grid_row_size);
-        }
+        // while(col_index_1 == col_index_2 && row_index_1 == row_index_2)
+        // {
+        //     row_index_2 = Math.floor(Math.random() * grid_col_size);
+        //     col_index_2 = Math.floor(Math.random() * grid_row_size);
+        // }
         
-        curr_grid[row_index_1][col_index_1].firstElementChild.innerText = 2; 
-        curr_grid[row_index_2][col_index_2].firstElementChild.innerText = 2;
-        console.log(row_index_1,col_index_1,row_index_2,col_index_2);
+        // curr_grid[row_index_1][col_index_1].firstElementChild.innerText = 2; 
+        // curr_grid[row_index_2][col_index_2].firstElementChild.innerText = 2;
+        // console.log(row_index_1,col_index_1,row_index_2,col_index_2);
         
         updateTileColors();
     
 }
+
   function addStartButtonListener() {
 	const startButton = document.querySelector(".start-btn");
 	if (startButton) {
@@ -135,27 +183,6 @@ function startTheGame()
 	}
   }
   addStartButtonListener();
-
-function getCurrentValues(){
-    let gridItems = Array.from(document.querySelectorAll(".grid-item"));
-    let matrix = []
-    let row = []; 
-    for(i=1; i<=gridItems.length; i++){
-        if(i % grid_row_size === 0){
-            let item = gridItems[i-1];
-            row.push(item);
-            matrix.push(row);
-            row = [];
-        }
-
-        else {
-            let item = gridItems[i-1];
-            row.push(item);
-        }
-
-    }
-    return matrix;
-}
 
 function getCurrentNumericalValues(){
     let gridItems = Array.from(document.querySelectorAll(".grid-item"));
@@ -176,23 +203,6 @@ function getCurrentNumericalValues(){
 
     }
     return matrix;
-}
-
-function getAvailableValues()
-{
-    curr_grid = getCurrentValues();
-    let available_cells = [];
-    for(let i = 0; i < grid_col_size; i++)
-    {
-        for(let j =0; j < grid_row_size; j++)
-        {
-            if(curr_grid[i][j].firstElementChild.innerText == "")
-            {
-                available_cells.push([i,j]);
-            }
-        }
-    }
-    return available_cells;
 }
 
 function shiftLeft(arr)
