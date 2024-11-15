@@ -1,8 +1,20 @@
 /* eslint-disable no-undef */
 const { Builder } = require('selenium-webdriver');
+const chrome = require('selenium-webdriver/chrome');
 
 (async function performanceTest() {
-  let driver = await new Builder().forBrowser('chrome').build();
+  // Configure Chrome options for headless mode
+  const options = new chrome.Options();
+  options.addArguments('--headless'); // Run in headless mode
+  options.addArguments('--disable-gpu'); // Disable GPU for compatibility
+  options.addArguments('--no-sandbox'); // Required for some CI environments
+  options.addArguments('--disable-dev-shm-usage'); // Optimize memory usage
+
+  const driver = new Builder()
+    .forBrowser('chrome')
+    .setChromeOptions(options)
+    .usingServer('http://localhost:4444/wd/hub') // Connect to the Selenium service
+    .build();
 
   try {
     // Load the Game Page and Measure Performance
