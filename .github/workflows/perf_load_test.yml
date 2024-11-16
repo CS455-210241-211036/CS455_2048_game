@@ -1,0 +1,74 @@
+name: perf_load_test
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+  
+  workflow_dispatch:
+
+jobs:
+  performance-test:
+    runs-on: ubuntu-latest
+
+    services:
+      selenium:
+        image: selenium/standalone-chrome:latest
+        ports:
+          - 4444:4444
+
+    steps:
+      # Step 1: Checkout code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js environment
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Step 4: Run performance test
+      - name: Run performance tests
+        run: npm run perf
+  load-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js environment
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Step 4: Install Artillery globally (if not in dependencies)
+      - name: Install Artillery
+        run: npm install -g artillery
+
+      # Step 5: Run Artillery load test
+      - name: Run Artillery load test
+        run: npm run perf
+
+      # Step 6: Optionally save the Artillery report as an artifact
+      - name: Upload Artillery report
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: artillery-report
+          path: ./artillery-report-folder  # Replace with your actual report output directory      
