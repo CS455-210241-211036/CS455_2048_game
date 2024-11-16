@@ -1,0 +1,10 @@
+config:
+  target: "https://cs4552048game-production.up.railway.app"
+  phases:
+    - duration: 30
+      arrivalRate: 10000
+
+scenarios:
+  - flow:
+      - get:
+          url: "/game"
