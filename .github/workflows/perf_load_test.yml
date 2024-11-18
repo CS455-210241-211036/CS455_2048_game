@@ -43,24 +43,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout code
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      # Step 2: Set up Node.js environment
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16'
-
-      # Step 3: Install dependencies
-      - name: Install dependencies
-        run: npm install
-
-      # Step 4: Install Artillery globally (if not in dependencies)
-      - name: Install Artillery
-        run: npm install -g artillery@latest
-
-      # Step 5: Run Artillery load test
-      - name: Run Artillery load test
-        run: artillery run ./load-test.yml
+        - name: Checkout code
+          uses: actions/checkout@v3
+    
+        - name: Setup Node.js 18
+          uses: actions/setup-node@v3
+          with:
+            node-version: '18.x'
+    
+        - name: Install Artillery and polyfill
+          run: |
+            npm install -g artillery
+            npm install web-streams-polyfill
+        
+        - name: Run load test
+          run: npm run load
