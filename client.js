@@ -21,6 +21,12 @@ async function makeRequest(endpoint, options = {}) {
   }
 }
 
+// Timer to terminate the script after 1 minute
+setTimeout(() => {
+  console.log("1 minute has elapsed. Terminating the script.");
+  process.exit(0); // Terminate the script
+}, 60 * 1000); // 60 seconds
+
 // Example usage
 (async () => {
   try {
