@@ -1,10 +1,18 @@
 config:
   target: "https://cs4552048game-production.up.railway.app"
   phases:
-    - duration: 30
-      arrivalRate: 10000
-
+    - duration: 30  
+      arrivalRate: 167 
+      rampTo: 10000    
 scenarios:
-  - flow:
+  - name: Get leaderboard scenario
+    flow:
       - get:
-          url: "/game"
+          url: '/api/get-leaderboard'
+  - name: Save score scenario
+    flow:
+      - post:
+          url: '/api/save-score'
+          json:
+            playerName: 'TestUser'
+            score: 100

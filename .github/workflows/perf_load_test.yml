@@ -63,12 +63,4 @@ jobs:
 
       # Step 5: Run Artillery load test
       - name: Run Artillery load test
-        run: npm run perf
-
-      # Step 6: Optionally save the Artillery report as an artifact
-      - name: Upload Artillery report
-        if: always()
-        uses: actions/upload-artifact@v2
-        with:
-          name: artillery-report
-          path: ./artillery-report-folder  # Replace with your actual report output directory      
+        run: artillery run load-test.yml
