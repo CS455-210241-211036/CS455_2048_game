@@ -59,8 +59,8 @@ jobs:
 
       # Step 4: Install Artillery globally (if not in dependencies)
       - name: Install Artillery
-        run: npm install -g artillery
+        run: npm install -g artillery@latest
 
       # Step 5: Run Artillery load test
       - name: Run Artillery load test
-        run: artillery run load-test.yml
+        run: artillery run ./load-test.yml
