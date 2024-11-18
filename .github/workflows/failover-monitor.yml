@@ -1,0 +1,30 @@
+name: Failover Health Check
+
+on:
+  schedule:
+    # Run at 2:00 AM UTC every night
+    - cron: "0 2 * * *"
+  workflow_dispatch: # Allows manual run from GitHub Actions UI
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js environment
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16' # Use the Node.js version you're targeting
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Step 4: Run health monitoring script
+      - name: Run failover monitoring
+        run: node client.js
