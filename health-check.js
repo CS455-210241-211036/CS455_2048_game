@@ -1,7 +1,7 @@
 const axios = require("axios");
 
-const PRIMARY_SERVER = "https://test2048-production.up.railway.app";
-const BACKUP_SERVER = "https://test2048-copy-production.up.railway.app";
+const PRIMARY_SERVER = "https://cs4552048game-production.up.railway.app";
+const BACKUP_SERVER = "https://cs4552048game-copy-production.up.railway.app";
 const HEALTH_CHECK_INTERVAL = 10000; // 10 seconds
 let activeServer = PRIMARY_SERVER;
 
