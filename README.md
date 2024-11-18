@@ -32,6 +32,9 @@
 - In the workflow flowchart, select the **load-test** job for performance reports
 - In the job, select the **Run load test** step for the report.
 
+**Load Balancing**
+- Video uploaded in root for the same. Displayed using localhost.
+  
 **Failover**
 - The workflow "Failover Health check" monitors the health. The workflow can be run manually and runs automatically at 2 am UTC time.
 - The workflow runs for a minute.
