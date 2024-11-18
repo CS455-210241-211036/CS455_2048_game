@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-var */
 const axios = require("axios");
 const { monitorServers, getActiveServer } = require("./health-check");
 

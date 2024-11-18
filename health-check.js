@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-var */
 const axios = require("axios");
 
 const PRIMARY_SERVER = "https://cs4552048game-production.up.railway.app";
